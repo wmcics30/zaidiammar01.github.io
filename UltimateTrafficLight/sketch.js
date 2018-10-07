@@ -83,14 +83,14 @@ function displayCorrectLight() {
   }
 }
 
-function displayXLights(){
-  if (state === 1 && elapsedTime >= 3000){
-    displayYellowLightHorizontal();
-  }
-  else if (state === 1){
-    displayGreenLightHorizontal();
-  }
-}
+//function displayXLights(){
+  //if (state === 1 && elapsedTime >= 3000){
+    //displayYellowLightHorizontal();
+  //}
+  //else if (state === 1){
+    //displayGreenLightHorizontal();
+  //}
+//}
 
 function displayRedLightVertical() {
   fill(255, 0, 0);
