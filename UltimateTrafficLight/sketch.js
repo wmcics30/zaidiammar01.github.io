@@ -7,19 +7,24 @@
 let y;
 let dy;
 let x;
+let stateTitleScreen;
 let state;
-//let stateX;
+let stateX;
 let lastTimeSwitchedColor = 0;
+let lastTimeSwitchedColorX = 0;
+
 
 let RED_LIGHT_DURATION = 4000;
 let GREEN_LIGHT_DURATION = 3000;
 let YELLOW_LIGHT_DURATION = 1000;
 let elapsedTime;
+let elapsedTimeX;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  stateTitleScreen = 1;
   state = 1;
-  //stateX = 2;
+  stateX = 2;
   x = width /2;
   y = height;
   dy = -2;
@@ -30,9 +35,9 @@ function draw() {
   drawIntersection();
   drawRect();
   checkForStateChange();
-  //checkForStateChangeX();
+  checkForStateChangeX();
   displayCorrectLight();
-  //displayCorrectLightX();
+  displayCorrectLightX();
   displayCarY();
 
 }
@@ -61,6 +66,22 @@ function checkForStateChange() {
   }
 }
 
+function checkForStateChangeX() {
+  let elapsedTimeX = millis() - lastTimeSwitchedColorX;
+  if (stateX === 1 && elapsedTimeX >= RED_LIGHT_DURATION) {
+    stateX = 2;
+    lastTimeSwitchedColorX = millis();
+  }
+  else if (stateX === 2 && elapsedTimeX >= GREEN_LIGHT_DURATION) {
+    stateX = 3;
+    lastTimeSwitchedColorX = millis();
+  }
+  else if (stateX === 3 && elapsedTimeX >= YELLOW_LIGHT_DURATION) {
+    stateX = 1;
+    lastTimeSwitchedColorX = millis();
+  }
+}
+
 function displayCarY(){
   fill(240);
   rect(x,y,30,60);
@@ -84,6 +105,18 @@ function displayCorrectLight() {
   }
   else if (state === 3) {
     displayYellowLightVertical();
+  }
+}
+
+function displayCorrectLightX() {
+  if (stateX === 1) {
+    displayRedLightHorizontal();
+  }
+  else if (stateX === 2) {
+    displayGreenLightHorizontal();
+  }
+  else if (stateX === 3) {
+    displayYellowLightHorizontal();
   }
 }
 
