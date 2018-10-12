@@ -197,6 +197,19 @@ function displayCorrectLight() {
   }
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+//function displayXLights(){
+  //if (state === 1 && elapsedTime >= 3000){
+    //displayYellowLightHorizontal();
+  //}
+  //else if (state === 1){
+    //displayGreenLightHorizontal();
+  //}
+//}
+=======
+>>>>>>> 8c1a4b969b82fa66c86e704c4204d34e34f1dedb
+=======
 function displayCorrectLightX() {
   if (stateX === 1) {
     displayRedLightHorizontal();
@@ -209,6 +222,7 @@ function displayCorrectLightX() {
   }
 }
 
+>>>>>>> 6995fef3ba8df2b6f7ff79ae2d331c67776fa598
 
 function displayRedLightVertical() {
   fill(255, 0, 0);
