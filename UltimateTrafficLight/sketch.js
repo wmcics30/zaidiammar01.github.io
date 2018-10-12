@@ -3,10 +3,10 @@
 // Date
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
-let y, y2;
+// - I havn't used much coding that we havnt done in class. I mostly just used a lot of logic and made it look cool.
+let y, y2, y3, y4;
 let dy, dy2, dx;
-let x;
+let x, x2, x3;
 let stateTitleScreen;
 let state;
 let stateX;
@@ -20,17 +20,28 @@ let YELLOW_LIGHT_DURATION = 2000;
 let elapsedTime;
 let elapsedTimeX;
 
+let music;
+
+function preload(){
+  music = loadSound("assets/music.mp3");
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  music.play();
   stateTitleScreen = 1;
   state = 1;
   stateX = 2;
   x = width /2 + 10;
   y = height;
   y2 = height + 200;
-  dy = -2;
-  dy2 = -1.9;
-  dx = 2;
+  y3 = height/2 + 10;
+  y4 = 0;
+  dy = -3;
+  dy2 = -2.5;
+  dx = 3;
+  x2 = width/2 - 40;
+  x3 = 0;
 }
 
 function draw() {
@@ -66,6 +77,7 @@ function runSimulation(){
     displayCorrectLightX();
     displayCarY();
     displayCarY2();
+    displayCarY3();
     displayCarX1();
   }
 
@@ -120,7 +132,7 @@ function displayCarY(){
   else if (y - y2 <= 80 && y > y2){
     y;
   }
-  else if (y >= height/2 + 70 && y <= height/2 + 90 && state === 1){
+  else if (y >= height/2 + 70 && y <= height/2 + 90 && state === 1 || state === 3 && y >= height/2 + 70 && y <= height/2 + 90){
     y;
   }
   else{
@@ -137,7 +149,7 @@ function displayCarY2(){
   else if (y2 - y <= 80 && y2 > y){
     y2;
   }
-  else if (y2 >= height/2 + 70 && y2 <= height/2 + 90 && state === 1){
+  else if (y2 >= height/2 + 70 && y2 <= height/2 + 90 && state === 1 || state === 3 && y2 >= height/2 + 70 && y2 <= height/2 + 90){
     y2;
   }
   else{
@@ -145,19 +157,31 @@ function displayCarY2(){
   }
 }
 
-function displayCarX1(){
-  fill(200);
-  x = 0;
-  y = height /2 + 10;
-  rect(x,y,60,30);
-  if (x >= width + 80){
-    x = width;
+function displayCarY3(){
+  fill(255, 0, 0);
+  rect(x2,y4,30,60);
+  if (y4 >= height + 80){
+    y4 = 0 - 60;
   }
-  else if (x >= width/2 - 70 && y2 <= width/2 - 90 && state === 1){
-    x;
+  else if (y4 >= height/2 - 140 && y4 <= height/2 - 120 && state === 1 || state === 3 && y4 >= height/2 - 140 && y4 <= height/2 - 120){
+    y4;
   }
   else{
-    x += dx;
+    y4 -= dy2;
+  }
+}
+
+function displayCarX1(){
+  fill(150);
+  rect(x3,y3,60,30);
+  if (x3 >= width + 80){
+    x3 = 0 - 60;
+  }
+  else if (x3 >= width/2 - 130 && x3 <= width/2 - 110 && stateX === 1 || stateX === 3 && x3 >= width/2 - 130 && x3 <= width/2 - 110){
+    x3;
+  }
+  else{
+    x3 += dx;
   }
 }
 
@@ -266,32 +290,3 @@ function drawRect() {
   rect(width/2 - 140, height/2 + 100, 60, 20, 1);
   rect(width/2 + 80, height/2 - 100, 60, 20, 1);
 }
-
-// let thisCar = {
-//     x: 100,
-//     y: 50,
-//     dx: 0,
-//     dy: 5,
-// };
-// undefined
-// thisCar.x
-// 100
-// let otherCar = {
-//     x: 200,
-//     y: 450,
-//     dx: 1,
-//     dy: 0,
-// };
-// undefined
-// carArray = []
-// []
-// carArray.push(thisCar)
-// 1
-// carArray
-// [{…}]0: dx: 0dy: 5x: 100y: 50__proto__: Objectlength: 1__proto__: Array(0)
-// carArray.push(otherCar)
-// 2
-// carArray[0].x
-// 100
-// carArray[1].x
-// 200
