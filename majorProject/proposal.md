@@ -1,10 +1,12 @@
 # Proposal
 
-I want to build a project including good physics
+I want make an upgraded version of the Ultimate Traffic light Simulator
 
 ## Need to have List
-- Phyics
-- Movement
+- At least 3 intersections
+- Cars able to turn
+- At least 2 cars
 
 ## Nice to have
-- Fun
+- Multiple lanes
+- More cars
