@@ -10,3 +10,4 @@ I want make an upgraded version of the Ultimate Traffic light Simulator
 ## Nice to have
 - Multiple lanes
 - More cars
+- Different sizes of cars
