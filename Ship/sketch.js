@@ -26,20 +26,69 @@ let bulletArray2 = [];
 let bulletArray3 = [];
 let bulletArray4 = [];
 
+let bulletArray5 = [];
+let bulletArray6 = [];
+let bulletArray7 = [];
+let bulletArray8 = [];
+
 
 let lastTurn = 0;
 let elapsedTime;
 let turnDuration = 300;
+
+let state;
+
 function setup() {
   createCanvas(700, 700);
   cellSize = width / cols;
+  state = 1;
 }
 
 function draw() {
-  background(255);
-  time();
-  grid = createArray(cols, rows);
-  displayGrid();
+  checkstate();
+}
+
+function checkstate(){
+  if (state === 1){
+    titlescreen();
+  }
+  else if (state === 2){
+    info1();
+  }
+  else if (state === 3){
+    background(255);
+    time();
+    grid = createArray(cols, rows);
+    displayGrid();
+  }
+}
+
+function titlescreen(){
+  if (mouseIsPressed){
+    state = 2;
+  }
+  else{
+    background(0, 0, 240);
+    textSize(30);
+    fill(255);
+    textStyle(NORMAL);
+    text("The BEST Ship simulator!!!", width/5, height/6);
+    textStyle(ITALIC);
+    text("Totally!", width/5, height/3);
+  }
+}
+
+function info1(){
+  if (mouseIsPressed){
+    state = 3;
+  }
+  else{
+    background(0, 0, 240);
+    textSize(30);
+    fill(255);
+    textStyle(NORMAL);
+    text("This is your ship", width/5, height/6);
+  }
 }
 
 function displayGrid(){
@@ -102,6 +151,35 @@ function createArray(cols, rows){
           }
         }
       }
+
+      for (let i = 0; i < bulletArray5.length; i++) {
+        if (x === bulletArray5[i].x){
+          if (y === bulletArray5[i].y){
+            randomGrid[y].push(3);
+          }
+        }
+      }
+      for (let i = 0; i < bulletArray6.length; i++) {
+        if (x === bulletArray6[i].x){
+          if (y === bulletArray6[i].y){
+            randomGrid[y].push(3);
+          }
+        }
+      }
+      for (let i = 0; i < bulletArray7.length; i++) {
+        if (x === bulletArray7[i].x){
+          if (y === bulletArray7[i].y){
+            randomGrid[y].push(3);
+          }
+        }
+      }
+      for (let i = 0; i < bulletArray8.length; i++) {
+        if (x === bulletArray8[i].x){
+          if (y === bulletArray8[i].y){
+            randomGrid[y].push(3);
+          }
+        }
+      }
     }
   }
   return randomGrid;
@@ -117,6 +195,9 @@ function time(){
     if (keyIsDown(88)){
       fireright();
     }
+    if (keyIsDown(90)){
+      fireleft();
+    }
     for (let i = 0; i < bulletArray1.length; i++) {
       bulletArray1[i].x = bulletArray1[i].x + 1;
     }
@@ -128,6 +209,19 @@ function time(){
     }
     for (let i = 0; i < bulletArray4.length; i++) {
       bulletArray4[i].y = bulletArray4[i].y - 1;
+    }
+
+    for (let i = 0; i < bulletArray5.length; i++) {
+      bulletArray5[i].x = bulletArray5[i].x - 1;
+    }
+    for (let i = 0; i < bulletArray6.length; i++) {
+      bulletArray6[i].y = bulletArray6[i].y - 1;
+    }
+    for (let i = 0; i < bulletArray7.length; i++) {
+      bulletArray7[i].x = bulletArray7[i].x + 1;
+    }
+    for (let i = 0; i < bulletArray8.length; i++) {
+      bulletArray8[i].y = bulletArray8[i].y + 1;
     }
   }
 }
@@ -175,6 +269,37 @@ function fireright(){
       y: body.y - 1,
     };
     bulletArray4.push(bullet4);
+  }
+}
+
+function fireleft(){
+  if (orientation === 1){
+    let bullet1 = {
+      x: body.x - 1,
+      y: body.y,
+    };
+    bulletArray5.push(bullet1);
+  }
+  if (orientation === 2){
+    let bullet2 = {
+      x: body.x,
+      y: body.y - 1,
+    };
+    bulletArray6.push(bullet2);
+  }
+  if (orientation === 3){
+    let bullet3 = {
+      x: body.x + 1,
+      y: body.y,
+    };
+    bulletArray7.push(bullet3);
+  }
+  if (orientation === 4){
+    let bullet4 = {
+      x: body.x,
+      y: body.y + 1,
+    };
+    bulletArray8.push(bullet4);
   }
 }
 
