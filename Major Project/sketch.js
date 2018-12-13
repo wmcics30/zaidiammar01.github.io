@@ -19,6 +19,31 @@ let elapsedTimeX;
 let intersection1lightx = 375;
 let intersection1lighty = 150;
 
+let intersection2lightx = 825;
+let intersection2lighty = 150;
+
+let intersection3lightx = 825;
+let intersection3lighty = 150;
+
+let x;
+let y;
+let dy;
+let dx;
+
+// class Car{
+//   constructor(){
+//     this.x = x;
+//     this.y = y;
+//     this.dx = dx;
+//     this.dy = dy;
+//     this.color = color(random(255));
+//   }
+//   display(){
+//     rect(x,y,20,10);
+//     move();
+//   }
+// }
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   state = 1;
@@ -29,6 +54,12 @@ function draw() {
   titleScreen();
   runSimulation();
 }
+
+// function move(){
+//   for (i = 0, i < Car, i++){
+//
+//   }
+// }
 function titleScreen(){
   if (mouseIsPressed){
     stateTitleScreen = 2;
@@ -111,8 +142,13 @@ function displayCorrectLightX() {
 
 function displayRedLightVertical() {
   fill(200, 200, 0);
-  rect(intersection1lightx, intersection1lighty, 10, 30, 1);
-  rect(intersection1lightx+100, intersection1lighty+175, 10, 30, 1);
+  rect(intersection1lightx, intersection1lighty, 10, 30);
+  rect(intersection1lightx+90, intersection1lighty+175, 10, 30);
+  rect(intersection2lightx, intersection2lighty, 10, 30);
+  rect(intersection2lightx+90, intersection2lighty+175, 10, 30);
+
+  rect(intersection3lightx, intersection3lighty, 10, 30);
+  rect(intersection3lightx+90, intersection3lighty+175, 10, 30);
   fill(255, 0, 0);
   ellipse(width/2 - 90, height/2 - 130, 5);
   ellipse(width/2 + 90, height/2 + 90, 5);
@@ -125,8 +161,10 @@ function displayRedLightVertical() {
 }
 function displayYellowLightVertical() {
   fill(200, 200, 0);
-  rect(200, 200, 20, 60, 1);
-  rect(100, 100, 20, 60, 1);
+  rect(intersection1lightx, intersection1lighty, 10, 30);
+  rect(intersection1lightx+90, intersection1lighty+175, 10, 30);
+  rect(intersection2lightx, intersection2lighty, 10, 30);
+  rect(intersection2lightx+90, intersection2lighty+175, 10, 30);
   fill(100, 0, 0);
   ellipse(width/2 - 90, height/2 - 130, 5);
   ellipse(width/2 + 90, height/2 + 90, 5);
@@ -139,8 +177,10 @@ function displayYellowLightVertical() {
 }
 function displayGreenLightVertical() {
   fill(200, 200, 0);
-  rect(200, 200, 20, 60, 1);
-  rect(100, 100, 20, 60, 1);
+  rect(intersection1lightx, intersection1lighty, 10, 30);
+  rect(intersection1lightx+90, intersection1lighty+175, 10, 30);
+  rect(intersection2lightx, intersection2lighty, 10, 30);
+  rect(intersection2lightx+90, intersection2lighty+175, 10, 30);
   fill(100, 0, 0);
   ellipse(width/2 - 90, height/2 - 130, 5);
   ellipse(width/2 + 90, height/2 + 90, 5);
@@ -153,8 +193,10 @@ function displayGreenLightVertical() {
 }
 function displayRedLightHorizontal() {
   fill(200, 200, 0);
-  rect(500, 500, 60, 20, 1);
-  rect(400, 400, 60, 20, 1);
+  rect(intersection1lightx+100, intersection1lighty+20, 30, 10);
+  rect(intersection1lightx-20, intersection1lighty+175, 30, 10);
+  rect(intersection2lightx+100, intersection2lighty+20, 30, 10);
+  rect(intersection2lightx-20, intersection2lighty+175, 30, 10);
   fill(255, 0, 0);
   ellipse(width/2 - 130, height/2 + 110, 5);
   ellipse(width/2 + 90, height/2 - 90, 5);
@@ -167,8 +209,10 @@ function displayRedLightHorizontal() {
 }
 function displayYellowLightHorizontal() {
   fill(200, 200, 0);
-  rect(500, 500, 60, 20, 1);
-  rect(400, 400, 60, 20, 1);
+  rect(intersection1lightx+100, intersection1lighty+20, 30, 10);
+  rect(intersection1lightx-20, intersection1lighty+175, 30, 10);
+  rect(intersection2lightx+100, intersection2lighty+20, 30, 10);
+  rect(intersection2lightx-20, intersection2lighty+175, 30, 10);
   fill(100, 0, 0);
   ellipse(width/2 - 130, height/2 + 110, 5);
   ellipse(width/2 + 90, height/2 - 90, 5);
@@ -181,8 +225,10 @@ function displayYellowLightHorizontal() {
 }
 function displayGreenLightHorizontal() {
   fill(200, 200, 0);
-  rect(500, 500, 60, 20, 1);
-  rect(400, 400, 60, 20, 1);
+  rect(intersection1lightx+100, intersection1lighty+20, 30, 10);
+  rect(intersection1lightx-20, intersection1lighty+175, 30, 10);
+  rect(intersection2lightx+100, intersection2lighty+20, 30, 10);
+  rect(intersection2lightx-20, intersection2lighty+175, 30, 10);
   fill(100, 0, 0);
   ellipse(width/2 - 130, height/2 + 110, 5);
   ellipse(width/2 + 90, height/2 - 90, 5);
