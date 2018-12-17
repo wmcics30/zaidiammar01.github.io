@@ -33,19 +33,24 @@ let y;
 let dy;
 let dx;
 
-// class Car{
-//   constructor(){
-//     this.x = x;
-//     this.y = y;
-//     this.dx = dx;
-//     this.dy = dy;
-//     this.color = color(random(255));
-//   }
-//   display(){
-//     rect(x,y,20,10);
-//     move();
-//   }
-// }
+let carArray = [];
+
+class Car{
+  constructor(x, y){
+    this.x = x;
+    this.y = y;
+    this.dx = dx;
+    this.dy = dy;
+    this.color = color(random(255));
+  }
+  display(){
+    fill(this.color);
+    rect(this.x,this.y,30,15);
+  }
+  update(){
+    this.x += this.dx;
+  }
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -58,8 +63,9 @@ function draw() {
   runSimulation();
 }
 
+
 // function move(){
-//   for (i = 0, i < Car, i++){
+//
 //
 //   }
 // }
@@ -68,6 +74,7 @@ function titleScreen(){
     stateTitleScreen = 2;
   }
   else{
+    background(0, 150, 0);
     fill(150, 200, 255);
     rect(0, 0, width, height/2);
     textSize(75);
@@ -80,6 +87,8 @@ function titleScreen(){
 }
 
 function runSimulation(){
+  let car1 = new Car(200, 260);
+  carArray.push(car1);
   if (stateTitleScreen === 2){
     layout();
     displayRects();
@@ -87,6 +96,10 @@ function runSimulation(){
     checkStateChangeX();
     displayCorrectLight();
     displayCorrectLightX();
+    for (let i = carArray.length - 1; i >= 0; i--) {
+      carArray[i].display();
+      carArray[i].update();
+    }
   }
 }
 
@@ -286,6 +299,27 @@ function displayRedLightHorizontal() {
 
   ellipse(intersection4lightx+125, intersection4lighty+25, 5);
   ellipse(intersection4lightx+5, intersection4lighty+130, 5);
+
+  //TOI
+
+  fill(255, 0, 0);
+  ellipse(intersection2lightx+5, intersection2lighty+5, 5);
+  ellipse(intersection2lightx+95, intersection2lighty+180, 5);
+
+  ellipse(intersection3lightx+5, intersection3lighty+5, 5);
+  ellipse(intersection3lightx+95, intersection3lighty+125, 5);
+  fill(100, 100, 0);
+  ellipse(intersection2lightx+5, intersection2lighty+15, 5);
+  ellipse(intersection2lightx+95, intersection2lighty+190, 5);
+
+  ellipse(intersection3lightx+5, intersection3lighty+15, 5);
+  ellipse(intersection3lightx+95, intersection3lighty+135, 5);
+  fill(0, 100, 0);
+  ellipse(intersection2lightx+5, intersection2lighty+25, 5);
+  ellipse(intersection2lightx+95, intersection2lighty+200, 5);
+
+  ellipse(intersection3lightx+5, intersection3lighty+25, 5);
+  ellipse(intersection3lightx+95, intersection3lighty+145, 5);
 }
 function displayYellowLightHorizontal() {
   fill(100, 0, 0);
@@ -306,6 +340,27 @@ function displayYellowLightHorizontal() {
 
   ellipse(intersection4lightx+125, intersection4lighty+25, 5);
   ellipse(intersection4lightx+5, intersection4lighty+130, 5);
+
+  //TOI
+
+  fill(100, 0, 0);
+  ellipse(intersection2lightx+5, intersection2lighty+5, 5);
+  ellipse(intersection2lightx+95, intersection2lighty+180, 5);
+
+  ellipse(intersection3lightx+5, intersection3lighty+5, 5);
+  ellipse(intersection3lightx+95, intersection3lighty+125, 5);
+  fill(255, 255, 0);
+  ellipse(intersection2lightx+5, intersection2lighty+15, 5);
+  ellipse(intersection2lightx+95, intersection2lighty+190, 5);
+
+  ellipse(intersection3lightx+5, intersection3lighty+15, 5);
+  ellipse(intersection3lightx+95, intersection3lighty+135, 5);
+  fill(0, 100, 0);
+  ellipse(intersection2lightx+5, intersection2lighty+25, 5);
+  ellipse(intersection2lightx+95, intersection2lighty+200, 5);
+
+  ellipse(intersection3lightx+5, intersection3lighty+25, 5);
+  ellipse(intersection3lightx+95, intersection3lighty+145, 5);
 }
 function displayGreenLightHorizontal() {
   fill(100, 0, 0);
@@ -326,6 +381,27 @@ function displayGreenLightHorizontal() {
 
   ellipse(intersection4lightx+125, intersection4lighty+25, 5);
   ellipse(intersection4lightx+5, intersection4lighty+130, 5);
+
+  //TOI
+
+  fill(100, 0, 0);
+  ellipse(intersection2lightx+5, intersection2lighty+5, 5);
+  ellipse(intersection2lightx+95, intersection2lighty+180, 5);
+
+  ellipse(intersection3lightx+5, intersection3lighty+5, 5);
+  ellipse(intersection3lightx+95, intersection3lighty+125, 5);
+  fill(100, 100, 0);
+  ellipse(intersection2lightx+5, intersection2lighty+15, 5);
+  ellipse(intersection2lightx+95, intersection2lighty+190, 5);
+
+  ellipse(intersection3lightx+5, intersection3lighty+15, 5);
+  ellipse(intersection3lightx+95, intersection3lighty+135, 5);
+  fill(0, 255, 0);
+  ellipse(intersection2lightx+5, intersection2lighty+25, 5);
+  ellipse(intersection2lightx+95, intersection2lighty+200, 5);
+
+  ellipse(intersection3lightx+5, intersection3lighty+25, 5);
+  ellipse(intersection3lightx+95, intersection3lighty+145, 5);
 }
 
 function displayRects(){
