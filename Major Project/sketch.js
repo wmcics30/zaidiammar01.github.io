@@ -39,21 +39,48 @@ class Car{
   constructor(x, y){
     this.x = x;
     this.y = y;
-    this.dx = dx;
-    this.dy = dy;
-    this.color = color(random(255));
+    this.dx = 2;
+    this.dy = 1;
+    this.color = color(255);
   }
   display(){
     fill(this.color);
     rect(this.x,this.y,30,15);
   }
   update(){
-    this.x += this.dx;
+    if (this.x+30 > 390 && this.x < 400){
+      if (stateX === 1 || stateX === 3){
+        this.x;
+      }
+      else{
+        if (this.y === 260){
+          this.x += this.dx;
+        }
+        else if (this.y === 280){
+          turnRight();
+        }
+      }
+    }
+    else if (this.x+30 > 840 && this.x < 850 && this.y === 260){
+      if (state === 1 || state === 3){
+        this.x;
+      }
+      else{
+        this.x += this.dx;
+      }
+    }
+    else{
+      this.x += this.dx;
+    }
+    if (this.x > width){
+      this.x = -30;
+    }
   }
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  angleMode(DEGREES);
   state = 1;
   stateX = 2;
 }
@@ -63,12 +90,15 @@ function draw() {
   runSimulation();
 }
 
-
-// function move(){
-//
-//
-//   }
-// }
+function turnRight(){
+  for (let i = 0; i < 91; i++){
+    push();
+    this.x += this.dx;
+    translate(this.x, this.y);
+    rotate(1);
+    pop();
+  }
+}
 function titleScreen(){
   if (mouseIsPressed){
     stateTitleScreen = 2;
@@ -87,8 +117,10 @@ function titleScreen(){
 }
 
 function runSimulation(){
-  let car1 = new Car(200, 260);
-  carArray.push(car1);
+  if (carArray.length === 0){
+    let car1 = new Car(200, 280);
+    carArray.push(car1);
+  }
   if (stateTitleScreen === 2){
     layout();
     displayRects();
