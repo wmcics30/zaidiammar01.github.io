@@ -35,45 +35,76 @@ let dx;
 
 let carArray = [];
 
+let turn = 0;
+
+let forward = 1;
+let turnright = 2;
+let turnleft = 3;
+
 class Car{
   constructor(x, y){
     this.x = x;
     this.y = y;
     this.dx = 2;
-    this.dy = 1;
+    this.dy = 2;
     this.color = color(255);
+    this.state = 2;
+    this.stateturn = forward;
   }
   display(){
     fill(this.color);
-    rect(this.x,this.y,30,15);
+    if (this.state === 2 || this.state === 4){
+      rect(this.x,this.y,30,15);
+    }
+    else if (this.state === 1 || this.state === 3){
+      rect(this.x,this.y,15,30);
+    }
   }
   update(){
-    if (this.x+30 > 390 && this.x < 400){
-      if (stateX === 1 || stateX === 3){
-        this.x;
-      }
-      else{
-        if (this.y === 260){
+    if (this.stateturn === forward){
+      if (this.state === 2){
+        if (this.x+30 === 400){
+          if (stateX === 1 || stateX === 3){
+            this.x;
+          }
+          else{
+            if (this.y === 260){
+              this.x += this.dx;
+            }
+            else if (this.y === 280){
+              this.stateturn = turnright;
+            }
+          }
+        }
+        else if (this.x+30 > 840 && this.x < 850 && this.y === 260){
+          if (state === 1 || state === 3){
+            this.x;
+          }
+          else{
+            this.x += this.dx;
+          }
+        }
+        else{
           this.x += this.dx;
         }
-        else if (this.y === 280){
-          turnRight();
+        if (this.x > width){
+          this.x = -30;
         }
       }
-    }
-    else if (this.x+30 > 840 && this.x < 850 && this.y === 260){
-      if (state === 1 || state === 3){
-        this.x;
-      }
-      else{
-        this.x += this.dx;
+      else if (this.state === 3){
+        this.y += this.dy;
       }
     }
-    else{
-      this.x += this.dx;
-    }
-    if (this.x > width){
-      this.x = -30;
+    else if (this.stateturn === turnright){
+      if (this.state === 2){
+        if (this.x + 30 === 434){
+          this.state = 3;
+          this.stateturn = forward;
+        }
+        else {
+          this.x += this.dx;
+        }
+      }
     }
   }
 }
@@ -90,15 +121,15 @@ function draw() {
   runSimulation();
 }
 
-function turnRight(){
-  for (let i = 0; i < 91; i++){
-    push();
-    this.x += this.dx;
-    translate(this.x, this.y);
-    rotate(1);
-    pop();
-  }
-}
+// function turnRight(){
+//   push();
+//   for (let i = 0; i < 91; i++){
+//     this.x += this.dx;
+//     translate(this.x, this.y);
+//     rotate(1);
+//   }
+//   pop();
+//}
 function titleScreen(){
   if (mouseIsPressed){
     stateTitleScreen = 2;
