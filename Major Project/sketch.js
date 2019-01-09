@@ -41,6 +41,8 @@ let forward = 1;
 let turnright = 2;
 let turnleft = 3;
 
+let choice;
+
 class Car{
   constructor(x, y){
     this.x = x;
@@ -63,36 +65,76 @@ class Car{
   update(){
     if (this.stateturn === forward){
       if (this.state === 2){
-        if (this.x+30 === 400){
-          if (stateX === 1 || stateX === 3){
-            this.x;
-          }
-          else{
-            if (this.y === 260){
-              this.x += this.dx;
+        if (this.y === 260){
+          if (this.x+30 === 400){
+            if (stateX === 1 || stateX === 3){
+              this.x;
             }
-            else if (this.y === 280){
-              this.stateturn = turnright;
+            else{
+              choice = random(1, 2);
+              if (choice > 1.5){
+                this.x += this.dx;
+              }
+              else if (choice <= 2){
+                this.stateturn = turnleft;
+              }
             }
           }
-        }
-        else if (this.x+30 > 840 && this.x < 850 && this.y === 260){
-          if (state === 1 || state === 3){
-            this.x;
+          else if (this.x+30 === 850){
+            if (state === 1 || state === 3){
+              this.x;
+            }
+            else{
+              choice = random(1, 2);
+              if (choice > 1.5){
+                this.x += this.dx;
+              }
+              else if (choice <= 2){
+                this.stateturn = turnleft;
+              }
+            }
           }
           else{
             this.x += this.dx;
           }
+          if (this.x > width){
+            this.x = -30;
+          }
         }
-        else{
-          this.x += this.dx;
-        }
-        if (this.x > width){
-          this.x = -30;
+
+        else if(this.y === 280){
+          if (this.x+30 === 400){
+            if (stateX === 1 || stateX === 3){
+              this.x;
+            }
+            else{
+              this.stateturn = turnright;
+            }
+          }
+          else if (this.x+30 > 840 && this.x < 850 && this.y === 260){
+            if (state === 1 || state === 3){
+              this.x;
+            }
+            else{
+              this.x += this.dx;
+            }
+          }
+          else{
+            this.x += this.dx;
+          }
+          if (this.x > width){
+            this.x = -30;
+          }
         }
       }
       else if (this.state === 3){
         this.y += this.dy;
+      }
+      else if (this.state === 4){
+        this.x -= this.dx;
+      }
+      else if (this.state === 1){
+        this.y -= this.dy;
       }
     }
     else if (this.stateturn === turnright){
@@ -103,6 +145,23 @@ class Car{
         }
         else {
           this.x += this.dx;
+        }
+      }
+    }
+    else if (this.stateturn === turnleft){
+      if (this.y === 260){
+        if (this.state === 2){
+          if (this.x + 30 === 454){
+            this.state = 1;
+            this.stateturn = forward;
+          }
+          else if (this.x + 30 === 904){
+            this.state = 1;
+            this.stateturn = forward;
+          }
+          else {
+            this.x += this.dx;
+          }
         }
       }
     }
@@ -149,7 +208,7 @@ function titleScreen(){
 
 function runSimulation(){
   if (carArray.length === 0){
-    let car1 = new Car(200, 280);
+    let car1 = new Car(200, 260);
     carArray.push(car1);
   }
   if (stateTitleScreen === 2){
