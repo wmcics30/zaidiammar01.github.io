@@ -50,7 +50,7 @@ class Car{
     this.dx = 2;
     this.dy = 2;
     this.color = color(255);
-    this.state = 2;
+    this.state = 1;
     this.stateturn = forward;
   }
   display(){
@@ -97,9 +97,6 @@ class Car{
           else{
             this.x += this.dx;
           }
-          if (this.x > width){
-            this.x = -30;
-          }
         }
 
         else if(this.y === 280){
@@ -134,7 +131,29 @@ class Car{
         this.x -= this.dx;
       }
       else if (this.state === 1){
-        this.y -= this.dy;
+        if (this.x === 424){
+          if (this.y === 320){
+            if (state === 1 || state === 3){
+              this.y;
+            }
+            else{
+              choice = random(1, 2);
+              if (choice > 1.6){
+                this.y -= this.dy;
+              }
+              else if (choice > 1.3){
+                this.stateturn = turnleft;
+              }
+              else if (choice <= 1.3){
+                this.stateturn = turnright;
+              }
+            }
+          }
+          else{
+            this.y -= this.dy;
+            console.log (this.y);
+          }
+        }
       }
     }
     else if (this.stateturn === turnright){
@@ -147,22 +166,62 @@ class Car{
           this.x += this.dx;
         }
       }
+      else if (this.state === 1){
+        if (this.y === 280){
+          this.state = 2;
+          this.stateturn = forward;
+        }
+        else {
+          this.y -= this.dy;
+        }
+      }
     }
     else if (this.stateturn === turnleft){
-      if (this.y === 260){
-        if (this.state === 2){
-          if (this.x + 30 === 454){
-            this.state = 1;
-            this.stateturn = forward;
-          }
-          else if (this.x + 30 === 904){
-            this.state = 1;
-            this.stateturn = forward;
-          }
-          else {
-            this.x += this.dx;
+      if (this.state === 2){
+        if (this.y === 260){
+          if (this.state === 2){
+            if (this.x + 30 === 454){
+              this.state = 1;
+              this.stateturn = forward;
+            }
+            else if (this.x + 30 === 904){
+              this.state = 1;
+              this.stateturn = forward;
+            }
+            else {
+              this.x += this.dx;
+            }
           }
         }
+      }
+      else if (this.state === 1){
+        if (this.y === 230){
+          this.state = 4;
+          this.stateturn = forward;
+        }
+        else {
+          this.y -= this.dy;
+        }
+      }
+    }
+    if (this.state === 2){
+      if (this.x > width){
+        this.x = -30;
+      }
+    }
+    else if (this.state === 3 ){
+      if (this.y > height){
+        this.y = - 30;
+      }
+    }
+    else if (this.state === 4 ){
+      if (this.x < -30){
+        this.x = width;
+      }
+    }
+    else if (this.state === 1 ){
+      if (this.y < -30){
+        this.y = height;
       }
     }
   }
@@ -208,7 +267,7 @@ function titleScreen(){
 
 function runSimulation(){
   if (carArray.length === 0){
-    let car1 = new Car(200, 260);
+    let car1 = new Car(424, 500);
     carArray.push(car1);
   }
   if (stateTitleScreen === 2){
